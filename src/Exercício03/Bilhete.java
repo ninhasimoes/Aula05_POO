@@ -16,8 +16,20 @@ public class Bilhete {
     }
 
 
+    public void carregar(double valor) {
+        saldo += valor;
+    }
 
+    public boolean passarNaCatraca(){
+        double valor = TARIFA / 2;
+        if (usuario.tipo.equalsIgnoreCase("comum")){
+            valor = TARIFA;
+        }
+        if (saldo<valor){
+            return false;
+        }
+        saldo -=valor;
+        return true;
 
-
-
+    }
 }

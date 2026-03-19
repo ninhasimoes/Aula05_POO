@@ -17,18 +17,30 @@ public class Main {
             System.out.println("3- Passar na catraca");
             System.out.println("4- Finalizar");
             opcao = sc.nextInt();
-        } while (opcao != 4);
 
-        switch (opcao) {
-            case 1 -> cadastrarBilhete();
-            case 2 -> carregar();
-            case 3 -> passarNaCatraca();
-            case 4 -> System.out.println("Obrigado por usar o nosso App");
-            default -> System.out.println("Opção inválida");
-        }
-        while (opcao != 4) ; //usa-se ; para do whilr
+
+            switch (opcao) {
+                case 1 -> cadastrarBilhete();
+                case 2 -> carregar();
+                case 3 -> passarCatraca();
+                case 4 -> System.out.println("Obrigado por usar o nosso App");
+                default -> System.out.println("Opção inválida");
+            }
+
+        }while (opcao != 4) ; //usa-se ; para do whiles
 
     }
+
+    private static void passarCatraca() {
+        Bilhete bilheteUnico = pesquisar();
+        if (bilheteUnico!=null){
+            if (bilheteUnico.passarNaCatraca()==false){
+                System.out.println("Saldo insuficiente");
+            }
+        }
+        System.out.println("Saldo atual R$ "+bilheteUnico.saldo);
+    }
+
 
     private static void carregar() {
         double valor;
@@ -45,14 +57,14 @@ public class Main {
             long cpf;
             String tipoTarifa;
             if (index < bilhete.length) {
-                System.out.println("Nome do usuário: ");
-                nome=sc.nextLine();
-                System.out.println("CPF: ");
+                System.out.print("Nome do usuário: ");
+                nome=sc.next();
+                System.out.print("CPF: ");
                 cpf=sc.nextLong();
-                System.out.println("Tipo Tarifa: (ESTUDANTE | PROFESSOR | NORMAL)");
+                System.out.print("Tipo Tarifa: (ESTUDANTE | PROFESSOR | COMUM)");
                 tipoTarifa= sc.next();
                 Usuario usuario = new Usuario(nome,cpf,tipoTarifa);//chamada do metódo construtor, os parametros DEVE estar em ordem
-                //bilhete[index]=new Bilhete(usuario);
+                bilhete[index]=new Bilhete(usuario);
                 index++;
             }
             else {
@@ -70,6 +82,8 @@ public class Main {
                     return  bilhete[i];
                 }
             }
+            System.out.println("CPF não encontrado");
             return null;
         }
+
 }
