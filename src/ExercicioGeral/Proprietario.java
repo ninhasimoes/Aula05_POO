@@ -9,4 +9,5 @@ public class Proprietario {
         this.nome = nome;
         this.cpf = cpf;
     }
+
 }
