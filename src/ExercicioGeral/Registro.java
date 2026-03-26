@@ -13,19 +13,20 @@ public class Registro {
         this.veiculo = veiculo;
         this.horaEntrada = horaEntrada;
     }
-    public long calcularTempo() {
-        LocalTime inicio = LocalTime.parse(horaEntrada);
-        LocalTime fim = LocalTime.parse(horaSaida);
+    public double calcularTempo() {
+        LocalTime inicio, fim;
+        double valor;
+        inicio = LocalTime.parse(horaEntrada);
+        fim = LocalTime.parse(horaSaida);
 
-        return Duration.between(inicio, fim).toMinutes();
+        long minutos = Duration.between(inicio, fim).toMinutes();
+        valor = minutos * 0.75;
+        return valor;
     }
-    public double calcularValor() {
-        return calcularTempo() * 0.75;
-    }
-    public void registrarSaida(String horaSaida) {
-        this.horaSaida = horaSaida;
     }
 
 
 
-}
+
+
+
