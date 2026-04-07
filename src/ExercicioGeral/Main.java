@@ -67,7 +67,7 @@ public class Main {
         placa = sc.next().toUpperCase();
         for (int i = 0; i < indexRegistro; i++) {
             if (registro[i].veiculo.placa.equals(placa)) {
-                ;//estamos comparando a placa
+                //estamos comparando a placa
                 return registro[i];
             }
         }
@@ -120,8 +120,9 @@ public class Main {
         System.out.print("Placa --> ");
         placa = sc.next().toUpperCase();
         for (int i = 0; i < indexVeiculo; i++) {
-            if (veiculo[i].placa.equals(placa)) ;//estamos comparando a placa
-            return veiculo[i];
+            if (veiculo[i].placa.equals(placa)) {//estamos comparando a placa
+                return veiculo[i];
+            }
         }
 
         System.out.println("Veículo não encontrado");
