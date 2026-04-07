@@ -1,5 +1,6 @@
 package ExercicioGeral;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 //byte usado para numeros pequenos ate 127
 public class Main {
@@ -9,12 +10,13 @@ public class Main {
     static Registro[] registro = new Registro[10];
     static int indexRegistro;
 
+
     public static void main(String[] args) {
 
 
         int opcao;
         do {
-            System.out.println("#### ESTACIONAMENTO PARKEASY #####");
+            System.out.println("##### ESTACIONAMENTO PARKEASY #####");
             System.out.println("[1] Entrada de veículos");
             System.out.println("[2] Saída de veículos");
             System.out.println("[3] Imprimir veículos estacionados");
@@ -26,10 +28,23 @@ public class Main {
                 case 1 -> entrada();
                 case 2 -> saida();
                 case 3 -> imprimirVeiculos();
+                case 4 -> imprimirReceita();
+                case 5 -> System.out.println("Volte Sempre! ");
+                default -> System.out.println("Opção Inválida! ");
             }
 
 
         } while (opcao != 5);
+    }
+
+    private static void imprimirReceita() {
+         double total =0;
+        for (int i = 0; i < indexRegistro; i++) {
+            if(registro[i].horaSaida!=null){
+                total += registro[i].calcularTempo();
+            }
+        }
+        System.out.print("Receita até o momento --> R$"+total);
     }
 
     private static void saida() {
@@ -59,11 +74,6 @@ public class Main {
         System.out.println("Veiculo não encontrado");
         return null;
     }
-
-
-
-
-
 
     //assinatura do metódo seu cabeçalho
     private static void entrada() {
@@ -98,12 +108,11 @@ public class Main {
     private static void imprimirVeiculos() {
         System.out.println("###### Veículos Estacionados ######");
         for (int i = 0; i < indexRegistro; i++) {
-            System.out.println("Placa --> " + registro[i].veiculo.placa);
-            System.out.println("Modelo --> " + registro[i].veiculo.modelo);
-            System.out.println("Marca --> " + registro[i].veiculo.marca);
-            System.out.println("Proprietário --> " + registro[i].veiculo.proprietario);
-
+            if (registro[i].horaSaida==null){
+                System.out.println("Placa --> " + registro[i].veiculo.placa);
+            }
         }
+
     }
 
     public static Veiculo pesquisarVeiculo() {
